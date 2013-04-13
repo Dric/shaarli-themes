@@ -1,0 +1,401 @@
+/* generique et partage */
+/* bleu:#0CF violet:#636*/
+img {
+   vertical-align: middle;
+}
+
+html {
+	height:100%;
+}
+
+body {
+  background-color: #000;
+  min-height:100%;
+}
+
+#pageheader,  
+#footer,
+#linklist,
+#cloudtag, 
+.picwall_container, 
+.daily {
+	width:80%;
+	max-width:1200px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.bigbutton, .smallbutton {
+    background:  url('370-pattern2.jpg') repeat 50% 50%;
+    color : #fff;
+    border : 2px solid #fff;
+
+    color : #000;
+	background-color : #fff;
+	background-image : -moz-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : -ms-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : -o-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : -webkit-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    border:none;
+}
+
+.smallbutton:hover {
+	background:  #fff;
+    color : #510000;
+}
+
+.linksperpage, .tagfilter, .searchform, .addform {
+	box-shadow:none;
+	border:1px solid #1D78A5;
+	background:#fff;
+}
+
+.linksperpage input, .tagfilter input, .searchform input, .addform input {
+	
+}
+
+.tagfilter input.bigbutton, 
+.searchform input.bigbutton, 
+.addform input.bigbutton {
+	color : white;
+	background-color: #0CF;
+	background-image: -moz-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: -ms-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: -o-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: -webkit-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+    border:none;
+}
+
+/*.tagfilter input.bigbutton:hover, 
+.tagfilter input.bigbutton:focus,
+.searchform input.bigbutton:hover, 
+.searchform input.bigbutton:focus,
+.addform input*/.bigbutton:hover,
+/*.addform input*/.bigbutton:focus,
+.smallbutton:hover,
+.smallbutton:focus {
+	color : inherit;
+	color : #636;
+	background-image : none;
+}
+
+/* header */
+
+#pageheader {
+	padding: 5px ;
+    box-shadow:none;
+    background : #0CF;
+    box-shadow:0px 2px 3px rgba(0,0,0,.5), 0px -2px 3px rgba(0,0,0,.5);
+    box-shadow:0px 0px 3px rgba(0,0,0,.5);
+    position: relative;
+    background-color : #0CF;
+	background-image : -moz-linear-gradient(#0CF);
+	background-image : -ms-linear-gradient(#0CF);
+	background-image : -o-linear-gradient(#0CF);
+	background-image : -webkit-linear-gradient(#0CF);
+	background-image : linear-gradient(#0CF));
+}
+
+#pageheader a, 
+#pageheader a:visited {
+	color : white;
+	background-color: #0CF;
+	background-image: -moz-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: -ms-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: -o-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: -webkit-linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+	background-image: linear-gradient(rgba(0, 204, 255, 0.7), rgba(0, 204, 255, 0));
+}
+
+#pageheader a:hover, 
+#pageheader a:focus{
+	color : inherit;
+	color : #636;
+	background-image : none;
+}
+
+#shaarli_title a,
+#shaarli_title a:visited { 
+	background-color: #1B6187;
+}
+
+#logo + .nomobile {
+	/* pour cibler le premier .nomobile, qui correspond � "Shaare your links" : grrrr */
+	color : #000 !important;
+}
+
+/* liste de liens */
+
+#linklist {
+	color : #fff;
+}
+
+#linklist li, 
+#linklist li.private,
+#linklist li.publicLinkHightLight,
+.paging,
+#searchcriteria {
+	border:none;	
+	color: white;
+}
+
+.paging {
+	margin-left:5px;
+	margin-right:5px;
+	padding: 5px;
+	height:30px;
+	line-height:30px;
+	background-color : #636;
+}
+
+.paging a:link,
+.paging a:visited {
+	color: #509FC9;
+	color : #1D78A5;
+}
+
+#paging_current {
+	color : #000;
+}
+
+#searchcriteria {
+	margin-left:5px;
+	margin-right:5px;
+	background-image:none;
+}
+
+#linklist li {
+    margin-left:5px;
+	margin-right:5px;
+
+	/*margin-left:0;
+	margin-right:0;
+	box-shadow:0px 2px 3px rgba(0,0,0,.5), 0px -2px 3px rgba(0,0,0,.5);
+	position:relative;
+	z-index:3;*/
+}
+
+#linklist li.publicLinkHightLight {
+	margin-left:0;
+	margin-right:0;
+	box-shadow:0px 2px 3px rgba(0,0,0,.5), 0px -2px 3px rgba(0,0,0,.5);
+	
+	box-shadow:0px 0px 3px rgba(0,0,0,.5);
+
+	position:relative;
+
+	/* margin-left:5px;
+	margin-right:5px;
+	box-shadow: none;
+	z-index: 1;*/
+}
+
+#linklist li.private {
+    border-left : 8px solid #E9FFCE;
+    border-left : 8px solid rgba(233,255,206,.5);
+}
+
+
+#linklist li.publicLinkHightLight:hover,
+#linklist li:hover{ 
+	background-color : lightgrey;
+	    background-image : -moz-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : -ms-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : -o-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : -webkit-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+    background-image : linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+}
+
+#linklist li .linkcontainer div img { /* pour cibler le qrcode, grrrr */
+	/*background : #fff;*/
+}
+
+#linklist li .linkcontainer div.linktaglist  img,
+#linklist li .linkcontainer div.linkdescription  img{
+	/* pour NE cibler QUE le qrcode, grrrr */
+	 /*background : none;*/
+}
+
+#linklist li .linkcontainer div.linkdescription a {
+	color : #FF4444;
+	color : #1D78A5;
+	padding:0 4px;
+;
+}
+#linklist li .linkcontainer div.linkdescription a:hover,
+#linklist li .linkcontainer div.linkdescription a:focus {
+	border-radius:4px;
+	background-color:#fff;
+	color : #1D78A5;
+	outline:none;
+}
+
+#linklist li .linkcontainer div.linkdescription a:hover, 
+#linklist li .linkcontainer div.linkdescription a:focus {
+   /color : #fff;
+}
+
+.linktitle a {
+    color : #636;
+    text-shadow : 1px 1px 0px rgba(255,255,255,.5);
+    border-radius : 0 0 4px 4px;
+	padding:4px 8px 4px 8px;
+	display:inline-block;
+	margin-top:-4px;
+}
+
+#linklist li:hover .linktitle a {
+	color: #636;
+}
+
+#linklist li:hover .linktitle a:hover,
+#linklist li:hover .linktitle a:focus {
+	background-color: #FFffff;
+	
+}
+
+.linkdescription {
+    color : #000;
+}
+
+.linkurl {
+    padding-right : 6px;
+    color: #0cf;
+}
+
+.linkdate {
+    /margin-left: -20px;
+    /padding-left: 20px;
+
+
+}
+
+.linkdate,
+.linkdate a {
+	color: #0cf;
+	background-image:none;
+
+}
+
+.linkdate a {
+	padding:4px;
+}
+
+.linkdate a:hover,
+.linkdate a:focus {
+	border-radius : 4px;
+	background-color:#fff;
+	color : inherit;
+	outline:none;
+}
+
+	
+.linktag {
+	/box-shadow: 0 0 2px rgba(255, 0, 0, 0.5);
+	border-radius : 4px;
+	padding : 3px 5px;
+	min-width:2em;
+	display: inline-block;
+	height:auto;
+	text-align: center;
+	background-color:#0CF;
+     background-repeat: repeat;
+	background-image:none;
+}
+	
+.linktag a {
+	color: white;
+}
+
+.linktag:hover {
+	 background-image: none;
+	 background-color:#636;
+}
+
+.thumbnail {
+	margin: 10px 0 10px 0;
+}
+
+/* footer */
+
+#footer {
+    color : #666;
+    border-top:none;
+    border-bottom: none;
+	background : none;
+	background-color : #0CF;
+	box-shadow:0px 2px 3px rgba(0,0,0,.5), 0px -2px 3px rgba(0,0,0,.5);
+	box-shadow:0px 0px 3px rgba(0,0,0,.5);
+	min-height:20px;
+	line-height:20px;
+	padding: 5px ;
+}
+
+#footer a {
+	color : #FF4444;
+	color : #1D78A5;
+	padding: 0 4px;
+}
+
+#footer a:hover, 
+#footer a:focus {
+   border-radius:4px;
+	background-color:#fff;
+	color : #1D78A5;
+	outline:none;
+}
+
+
+/* nuage de tags */
+
+#cloudtag {
+	padding-top : 20px;
+	padding-bottom:20px;
+	background-color : #F4FCE8;
+	background-image : -moz-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : -ms-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : -o-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : -webkit-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+}
+
+/* galerie d'images */
+
+.picwall_container {
+	overflow: hidden;
+	background-color : #F4FCE8;
+	background-image : -moz-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : -ms-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : -o-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : -webkit-linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+	background-image : linear-gradient(rgba(168, 218, 244, 0.7), rgba(168, 218, 244, 0));
+}
+
+.picwall_pictureframe {
+	background:none;
+}
+
+/* the daily shaarli */
+
+.daily {
+	border:none;
+	margin-top:4px;
+}
+
+/* formulaire de connexion */
+
+#headerform {
+	color : #000;
+}
+
+/* tools */
+#toolsdiv a span {
+	color : #333;
+}
+
+/* add/edit link */
+#editlinkform {
+	color : #000;
+}
