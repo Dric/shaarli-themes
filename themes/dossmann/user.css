@@ -73,7 +73,7 @@ h1 { font-size:20pt; font-weight:bold; font-style:italic; margin-bottom:20px; }
 
 
 #pageheader #logo{
-background-image: url('https://olivier.dossmann.net/joueb/images/logo.gif');
+background-image: url('https://olivier.dossmann.net/blog/images/logo.gif');
 background-repeat: no-repeat;
 float:left;
 margin:0 10px 0 10px;
@@ -286,7 +286,7 @@ font-size:9pt;
     text-align: left;
   background-color: transparent;
   background-color: rgba(0, 0, 0, 0.4);  /* FF3+, Saf3+, Opera 10.10+, Chrome, IE9 */
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000); /* IE6ï¿½IE9 */
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000); /* IE6–IE9 */
 text-shadow:2px 2px 1px #000000;    
 }
 
@@ -445,5 +445,4 @@ div.dailyEntryTitle { font-size:16pt; font-weight:bold;}
 div.dailyEntryDescription { font-size:10pt; }
 
 } 
-
 
