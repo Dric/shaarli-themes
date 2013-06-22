@@ -1,558 +1,442 @@
-<!DOCTYPE html>
-<html>
-<head><title>alexis j : : liens</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="format-detection" content="telephone=no" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<link rel="alternate" type="application/rss+xml" href="http://liens.effingo.be/?do=rss" title="RSS Feed" />
-<link rel="alternate" type="application/atom+xml" href="http://liens.effingo.be/?do=atom" title="ATOM Feed" />
-<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-<link type="text/css" rel="stylesheet" href="inc/shaarli.css?version=0.0.41+beta" />
+/* CSS Stylsheet for Shaarli - http://sebsauvage.net/wiki/doku.php?id=php:shaarli */
 
-<script src="inc/jquery.min.js"></script><script src="inc/jquery-ui.min.js"></script>
-</head>
-<body>
-<div id="pageheader">
-	
-    <div id="logo" title="Share your links !" onclick="document.location='?';"></div>
-    <div id="topcount" class="nomobile">Shaare your links...<br>
-        4119 links</div>
-    <span id="shaarli_title"><a href="?">alexis j : : liens</a></span>
-  
+/* Thème adapté par Alexis J pour http://liens.effingo.be */
 
-    <a href="?" class="nomobile">Home</a>
-    
-        <a href="?do=login">Login</a>
-    
-    <a href="http://liens.effingo.be/?do=rss" class="nomobile">RSS Feed</a>
-    <a href="http://liens.effingo.be/?do=atom" style="padding-left:10px;" class="nomobile">ATOM Feed</a>
-    <a href="?do=tagcloud">Tag cloud</a>
-    <a href="?do=picwall">Picture wall</a>
-    <a href="?do=daily">Daily</a>
+/* CSS Reset from Yahoo to cope with browsers CSS inconsistencies. */
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved. Code licensed under the BSD License: http://developer.yahoo.com/yui/license.html
+version: 2.8.2r1
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
 
-    <div class="clear"></div>
+body { font-family: sans-serif,Arial,Helvetica,Verdana,"Trebuchet MS"; font-size:10pt; background-color: #ffffff; }
+input, textarea {
+	background-color: #FBFBFB;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	padding:5px;
+	border-radius: 5px 5px 5px 5px;
+	border: none;
+	color:#000;
+
+	}
+
+h1 { font-size:20pt; font-weight:bold; font-style:italic; margin-bottom:20px; }
+/* I don't give a shit about IE. He can't understand selectors such as input[type='submit']. */
+
+/* Buttons */
+.bigbutton {
+    cursor: pointer;
+    height: 24px;
+    margin-left: 5px;
+    padding: 0 5px;
+	color: #606060;
+	}
+.smallbutton {
+    background-color: #E3272D;
+    border-radius: 3px 3px 3px 3px;
+	box-shadow: 5px 5px 5px grey;
+    cursor: pointer;
+    height: 20px;
+    margin-left: 5px;
+    padding: 0 5px;
+	color: #606060;
+	}
+
+/* Small tab on the left of each link with edit/delete buttons. */
+.button_edit, .button_delete { border-radius:0; box-shadow:none; border-style:none; border-width:0; padding:0; background:none; }
+.linkeditbuttons {  
+	position:absolute; 
+	left:-1px;  
+	padding:4px 2px 2px 2px;
+	background-color:#f0f0f0;
+
+	-webkit-border-radius:0px 6px 6px 0px;
+	-moz-border-radius:0px 6px 6px 0px;
+	-o-border-radius:0px 6px 6px 0px;
+	-ms-border-radius:0px 6px 6px 0px;
+	border-radius:0px 6px 6px 0px;
+
+	-webkit-box-shadow:0px 0px 3px 0px #333333;
+	-moz-box-shadow:0px 0px 3px 0px #333333;
+	-o-box-shadow:0px 0px 3px 0px #333333;
+	-ms-box-shadow:0px 0px 3px 0px #333333;
+	box-shadow:0px 0px 3px 0px #333333;
+}
+
+#pageheader #logo{
+background-image: url('../images/logo.png');
+background-repeat: no-repeat;
+float:left;
+#margin:0 10px 0 10px;
+#width:105px;
+height:55px;
+#cursor:pointer;
+display:none;
+}
+
+#topcount {
+    color: #BBBBBB;
+    float: right;
+    font-size: 11pt;
+    padding: 6px 6px 0 0;
+    text-align: right;
+}
+
+#pageheader
+{
+    background-color: rgba(196, 198, 199, 0.3);
+	width:auto;
+	padding:0 10px 5px 10px;
+	margin: auto; 
+	color:#ffffff;
+}
+
+#pageheader a
+{
+    background-color: #E3272D;
+	padding:5px;
+	border-radius: 5px 5px 5px 5px;
+	margin:10px 3px 3px 3px;
+	color:#ffffff;
+	float:left;
+	text-decoration:none;
+}
+#pageheader a:hover
+{
+    background-color: #555555;
+	transition-duration:1s;
+	-moz-transition-duration:1s;
+	-webkit-transition-duration:1s;
+	-o-transition-duration:1s;
+}
 
 
+#toolsdiv a{
+	clear:both;
+}
+#toolsdiv a span{
+	color:#ffffff;
+}
+.linksperpage,.tagfilter,.searchform,.addform {
+	background-color: #F7F7F7;
+	display:inline;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	padding:5px;
+	border: none;
+	border-radius: 2px 2px 2px 2px;
+	margin:10px 3px 3px 3px;
+	color:#cecece;
+}
 
-	<div id="headerform" style="width:100%; white-space:nowrap;">
-	    <form method="GET" class="searchform" name="searchform" style="display:inline;"><input type="text" id="searchform_value" name="searchterm" style="width:30%" value=""> <input type="submit" value="Search" class="bigbutton"></form>
-	    <form method="GET" class="tagfilter" name="tagfilter" style="display:inline;margin-left:24px;"><input type="text" name="searchtags" id="tagfilter_value" style="width:10%" value=""> <input type="submit" value="Filter by tag" class="bigbutton"></form>
-	</div>
-</div>
+.linksperpage{
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+	padding:3px;
+}
 
-<div id="linklist">
+.linksperpage input,.tagfilter input, .searchform input, .addform input{
+	border:none;
+	color:#606060;
+	background:none;
+	box-shadow:none;
+	padding:5px;
+}
 
-    <div class="paging">
+.linksperpage input{
+	padding:0;
+}
 
-    <div id="paging_linksperpage">
-        Links per page: <a href="?linksperpage=20">20</a> <a href="?linksperpage=50">50</a> <a href="?linksperpage=100">100</a>
-        <form method="GET" style="display:inline;" class="linksperpage"><input type="text" name="linksperpage" size="2" style="height:15px;"></form>
-    </div>
-     <a href="?page=2" id="paging_older">&#x25C4;Older</a> 
-    <div id="paging_current">page 1 / 206 </div>
-    
-</div>
+.tagfilter input.bigbutton,.searchform input.bigbutton,.addform input.bigbutton{
+	padding:0 5px 0 5px;
+	margin:5px 0 5px 0;
+	height:20px;
+	cursor:pointer;
+}
 
-    
-        
-        
-    
-    <ul>
-        
-        <li class="publicLinkHightLight">
-            <a name="_HgUaA" id="_HgUaA"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://transports.blog.lemonde.fr/2013/06/16/le-lobby-europeen-du-velo-montre-ses-muscles/">Le lobby européen du vélo montre ses muscles | L'interconnexion n'est plus assurée</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?_HgUaA">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3F_HgUaA&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://transports.blog.lemonde.fr/2013/06/16/le-lobby-europeen-du-velo-montre-ses-muscles/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=europe">europe</a></span> <span class="linktag" title="Add tag"><a href="?addtag=lobby">lobby</a></span> <span class="linktag" title="Add tag"><a href="?addtag=manifestation">manifestation</a></span> <span class="linktag" title="Add tag"><a href="?addtag=v%C3%A9lo">vélo</a></span> <span class="linktag" title="Add tag"><a href="?addtag=%C3%A9v%C3%A9nement">événement</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="_lPMxA" id="_lPMxA"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.mondequibouge.be/index.php/2013/06/fontaines-deau-potable-bruxelles/">Une nouvelle carte des fontaines d’eau potable à Bruxelles « Monde qui bouge</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?_lPMxA">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3F_lPMxA&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.mondequibouge.be/index.php/2013/06/fontaines-deau-potable-bruxelles/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=bruxelles">bruxelles</a></span> <span class="linktag" title="Add tag"><a href="?addtag=eau">eau</a></span> <span class="linktag" title="Add tag"><a href="?addtag=fontaine">fontaine</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="-3HKGw" id="-3HKGw"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.paperblog.fr/6474288/un-petit-commerce-lucratif-349-velos-voles-vendus-sur-la-toile-en-deux-mois/">Un petit commerce lucratif : 349 vélos volés vendus sur la toile en deux mois… - Paperblog</a></span>
-                <br>
-                <div class="linkdescription">La brigade des enquêtes d’initiatives (BEI) du 12e était destinataire d’une demande d’enquête par le ministère de l’Intérieur à la suite d’un mail d’un particulier dénonçant la vente de son vélo volé sur un site de vente en ligne, le lendemain des faits, le 21 avril 2013.</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?-3HKGw">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3F-3HKGw&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.paperblog.fr/6474288/un-petit-commerce-lucratif-349-velos-voles-vendus-sur-la-toile-en-deux-mois/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=police">police</a></span> <span class="linktag" title="Add tag"><a href="?addtag=vol">vol</a></span> <span class="linktag" title="Add tag"><a href="?addtag=v%C3%A9lo">vélo</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="I9wCBQ" id="I9wCBQ"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.lejim.info/spip/spip.php?article361">Facebook : la Stasi qui exploite un milliard de mouchards - Journal Indépendant et Militant</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?I9wCBQ">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FI9wCBQ&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.lejim.info/spip/spip.php?article361</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=facebook">facebook</a></span> <span class="linktag" title="Add tag"><a href="?addtag=stasi">stasi</a></span> <span class="linktag" title="Add tag"><a href="?addtag=viepriv%C3%A9e">vieprivée</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="1zp1hQ" id="1zp1hQ"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://geeko.lesoir.be/2013/06/15/chez-les-robots-humains-damazon/">Chez les robots humains d’Amazon | Geeko</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?1zp1hQ">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3F1zp1hQ&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://geeko.lesoir.be/2013/06/15/chez-les-robots-humains-damazon/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=amazon">amazon</a></span> <span class="linktag" title="Add tag"><a href="?addtag=production">production</a></span> <span class="linktag" title="Add tag"><a href="?addtag=travail">travail</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="s28WRA" id="s28WRA"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.opennicproject.org/">OpenNIC Project</a></span>
-                <br>
-                <div class="linkdescription">Are you looking for an alternative DNS provider that is open and democratic, are you concerned about censorship?</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?s28WRA">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3Fs28WRA&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.opennicproject.org/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=dns">dns</a></span> <span class="linktag" title="Add tag"><a href="?addtag=internet">internet</a></span> <span class="linktag" title="Add tag"><a href="?addtag=reseau">reseau</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="Tgocsw" id="Tgocsw"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://wiki.opennicproject.org/HomePage">OpenNIC Wiki: DNS Wizards</a></span>
-                <br>
-                <div class="linkdescription">OpenNIC is a user controlled Network Information Center offering a democratic, non-national, alternative to the traditional Top-Level Domain registries.</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?Tgocsw">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FTgocsw&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://wiki.opennicproject.org/HomePage</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=dns">dns</a></span> <span class="linktag" title="Add tag"><a href="?addtag=internet">internet</a></span> <span class="linktag" title="Add tag"><a href="?addtag=r%C3%A9seau">réseau</a></span> <span class="linktag" title="Add tag"><a href="?addtag=viepriv%C3%A9e">vieprivée</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="9t3MmA" id="9t3MmA"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.lameuse.be/734108/article/regions/huy-waremme/actualite/2013-05-30/une-bande-de-jeunes-vit-au-milieu-des-bois-de-modave">Une bande de jeunes vit au milieu des bois de Modave - lameuse.be</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?9t3MmA">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3F9t3MmA&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.lameuse.be/734108/article/regions/huy-waremme/actualite/2013-05-30/une-bande-de-jeunes-vit-au-milieu-des-bois-de-modave</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=belgique">belgique</a></span> <span class="linktag" title="Add tag"><a href="?addtag=huy">huy</a></span> <span class="linktag" title="Add tag"><a href="?addtag=modave">modave</a></span> <span class="linktag" title="Add tag"><a href="?addtag=yourte">yourte</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="YXFCHg" id="YXFCHg"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://fr.wikipedia.org/wiki/Licorne_rose_invisible">Licorne rose invisible - Wikipédia</a></span>
-                <br>
-                <div class="linkdescription">La Licorne Rose Invisible (en anglais Invisible Pink Unicorn ou IPU) est la déesse d'une parodie de religion utilisée pour la satire des croyances théistes. L'effet parodique repose entre autres sur l'affirmation paradoxale que la Licorne est à la fois rose et invisible1. Elle est une illustration rhétorique utilisée par les athées et les autres sceptiques religieux comme une version contemporaine de la théière de Russell, parfois mentionnée en liaison avec le Monstre en Spaghetti volant2.</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?YXFCHg">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FYXFCHg&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://fr.wikipedia.org/wiki/Licorne_rose_invisible</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=licorne">licorne</a></span> <span class="linktag" title="Add tag"><a href="?addtag=religion">religion</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="4MB0EQ" id="4MB0EQ"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.supportdontpunish.org/">Support. Don't Punish.</a></span>
-                <br>
-                <div class="linkdescription">SUPPORT. DON'T PUNISH. is a global advocacy campaign to raise awareness of the harms caused by the criminalisation of people who use drugs.<br />
-Logo : <a href="https://www.dropbox.com/s/361w1h9buppvtkn/SDP_French_hi_res_RGB%20.jpg" rel="nofollow">https://www.dropbox.com/s/361w1h9buppvtkn/SDP_French_hi_res_RGB%20.jpg</a></div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?4MB0EQ">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3F4MB0EQ&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.supportdontpunish.org/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=drogues">drogues</a></span> <span class="linktag" title="Add tag"><a href="?addtag=fedito">fedito</a></span> <span class="linktag" title="Add tag"><a href="?addtag=sant%C3%A9">santé</a></span> <span class="linktag" title="Add tag"><a href="?addtag=sida">sida</a></span> <span class="linktag" title="Add tag"><a href="?addtag=soin">soin</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="KPnBbw" id="KPnBbw"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.lalibre.be/debats/opinions/article/821448/polamique-walibi-le-fadaral-devrait-balayer-devant-sa-porte.html">Lalibre.be - Polémique Walibi : &quot;Le fédéral devrait balayer devant sa porte&quot;</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?KPnBbw">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FKPnBbw&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.lalibre.be/debats/opinions/article/821448/polamique-walibi-le-fadaral-devrait-balayer-devant-sa-porte.html</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=belgique">belgique</a></span> <span class="linktag" title="Add tag"><a href="?addtag=culture">culture</a></span> <span class="linktag" title="Add tag"><a href="?addtag=mus%C3%A9e">musée</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="gU2iIQ" id="gU2iIQ"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.framablog.org/index.php/post/2013/06/12/logiciel-libre-aider-sans-programmer">Comment aider le logiciel libre quand on ne sait pas coder - Framablog</a></span>
-                <br>
-                <div class="linkdescription">on peut contribuer au logiciel libre et faire ainsi partie de sa communauté sans être nécessairement un développeur de logiciel libre</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?gU2iIQ">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FgU2iIQ&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.framablog.org/index.php/post/2013/06/12/logiciel-libre-aider-sans-programmer</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=communaut%C3%A9">communauté</a></span> <span class="linktag" title="Add tag"><a href="?addtag=contribution">contribution</a></span> <span class="linktag" title="Add tag"><a href="?addtag=logicielslibres">logicielslibres</a></span> <span class="linktag" title="Add tag"><a href="?addtag=support">support</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="XBqPtw" id="XBqPtw"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://idpc.net/fr/alerts/2013/05/soutenez-ne-punissez-pas-reapproprions-nous-le-26-juin-avec-une-campagne-mondiale-de-sensibilisation">« Soutenez. Ne punissez pas »: Réapproprions-nous le 26 Juin avec une campagne mondiale de sensibilisation</a></span>
-                <br>
-                <div class="linkdescription">l’IDPC a travaillé en collaboration avec l’Alliance Internationale sur le VIH/SIDA, le Réseau International des Usagers de Drogues (INPUD), Harm Reduction International (HRI) et beaucoup d’autres afin de développer « Soutenez. Ne punissez pas » (Support. Don’t Punish), une campagne de plaidoyer internationale pour sensibiliser les gouvernements sur les dommages causés par la pénalisation des usagers de drogues. La campagne s'inscrit dans le cadre du projet « Action communautaire pour la réduction des risques » (CAHR).</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?XBqPtw">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FXBqPtw&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://idpc.net/fr/alerts/2013/05/soutenez-ne-punissez-pas-reapproprions-nous-le-26-juin-avec-une-campagne-mondiale-de-sensibilisation</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=addiction">addiction</a></span> <span class="linktag" title="Add tag"><a href="?addtag=drogue">drogue</a></span> <span class="linktag" title="Add tag"><a href="?addtag=fedito">fedito</a></span> <span class="linktag" title="Add tag"><a href="?addtag=toxicomanie">toxicomanie</a></span> <span class="linktag" title="Add tag"><a href="?addtag=%C3%A9v%C3%A9nement">événement</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="puRsNw" id="puRsNw"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.presse-citron.net/get-lucky-1920-2020">Evolution of Get Lucky</a></span>
-                <br>
-                <div class="linkdescription">Un musicien français propose une série de reprises de Get Lucky de Daft Punk réinterprété selon les différentes modes musicales des décennies précédentes. Étonnant voyage d’une mélodie dans le temps.</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?puRsNw">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FpuRsNw&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.presse-citron.net/get-lucky-1920-2020</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=daftpunk">daftpunk</a></span> <span class="linktag" title="Add tag"><a href="?addtag=musique">musique</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="o9uOHg" id="o9uOHg"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://prism-break.org/">Opt out of PRISM, the NSA's global data surveillance program - PRISM BREAK</a></span>
-                <br>
-                <div class="linkdescription">Opt out of PRISM, the NSA’s global data surveillance program. Stop reporting your online activities to the American government with these free alternatives to proprietary software.</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?o9uOHg">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3Fo9uOHg&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://prism-break.org/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=alternative">alternative</a></span> <span class="linktag" title="Add tag"><a href="?addtag=logiciel">logiciel</a></span> <span class="linktag" title="Add tag"><a href="?addtag=prism">prism</a></span> <span class="linktag" title="Add tag"><a href="?addtag=surveillance">surveillance</a></span> <span class="linktag" title="Add tag"><a href="?addtag=viepriv%C3%A9e">vieprivée</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="MUnpQw" id="MUnpQw"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.lemonde.fr/international/infographie/2013/06/11/le-programme-prism-en-une-infographie_3427774_3210.html">Comprendre le programme &quot;Prism&quot;</a></span>
-                <br>
-                <div class="linkdescription">Comprendre Prism en une infographie</div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?MUnpQw">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FMUnpQw&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.lemonde.fr/international/infographie/2013/06/11/le-programme-prism-en-une-infographie_3427774_3210.html</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=inforgaphie">inforgaphie</a></span> <span class="linktag" title="Add tag"><a href="?addtag=nsa">nsa</a></span> <span class="linktag" title="Add tag"><a href="?addtag=prism">prism</a></span> <span class="linktag" title="Add tag"><a href="?addtag=surveillance">surveillance</a></span> <span class="linktag" title="Add tag"><a href="?addtag=usa">usa</a></span> <span class="linktag" title="Add tag"><a href="?addtag=viepriv%C3%A9e">vieprivée</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="3rUQqA" id="3rUQqA"></a>
-            <div class="thumbnail"><a href="https://urban-fonts.s3.amazonaws.com/blog/erif-vs-sans-serif.jpg"><img src="http://liens.effingo.be/?do=genthumbnail&amp;hmac=c9275c4be43c3970ef5af0d00e919a4014e584f49c08dffbdfe6e27f2e395ea8&amp;url=https%3A%2F%2Furban-fonts.s3.amazonaws.com%2Fblog%2Ferif-vs-sans-serif.jpg" width="120" style="height:auto;" alt="thumbnail"></a></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="https://urban-fonts.s3.amazonaws.com/blog/erif-vs-sans-serif.jpg">Serif-vs-sans-serif.jpg (Image JPEG, 600x5323 pixels)</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?3rUQqA">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3F3rUQqA&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">https://urban-fonts.s3.amazonaws.com/blog/erif-vs-sans-serif.jpg</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=police">police</a></span> <span class="linktag" title="Add tag"><a href="?addtag=typographie">typographie</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="NdDVoA" id="NdDVoA"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://www.klaire.fr/2013/06/10/ivre-hadopi-adopte-le-label-pur-foutage-de-gueule/">Ivre, Hadopi adopte le label PUR foutage de gueule | Klaire fait grr</a></span>
-                <br>
-                <div class="linkdescription">Waouw. Apparemment, des alternatives légales et de qualités au P2P, c'est pas pour demain... Test des sites recommandés par l'HADOPI avec son label &quot;PUR&quot; (sensé orienter les internautes vers des sites légaux de vidéo à la demande - pcq le téléchargement, &quot;c'est mal&quot; -)<br />
-Voir également: <a href="http://www.numerama.com/magazine/26200-label-pur-pourquoi-la-hadopi-labellise-aussi-la-nullite.html" rel="nofollow">http://www.numerama.com/magazine/26200-label-pur-pourquoi-la-hadopi-labellise-aussi-la-nullite.html</a></div>
-                
-                    <span class="linkdate" title="Short link here"><a href="?NdDVoA">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FNdDVoA&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://www.klaire.fr/2013/06/10/ivre-hadopi-adopte-le-label-pur-foutage-de-gueule/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=hadopi">hadopi</a></span> <span class="linktag" title="Add tag"><a href="?addtag=pur">pur</a></span> <span class="linktag" title="Add tag"><a href="?addtag=streaming">streaming</a></span> <span class="linktag" title="Add tag"><a href="?addtag=t%C3%A9l%C3%A9chargement">téléchargement</a></span> <span class="linktag" title="Add tag"><a href="?addtag=vid%C3%A9o">vidéo</a></span> <span class="linktag" title="Add tag"><a href="?addtag=vod">vod</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li class="publicLinkHightLight">
-            <a name="TN06wA" id="TN06wA"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://graphism.fr/apprenez-les-6-mouvements-les-importants-de-lhistoire-du-design-avec-lopen-university">Apprenez les 6 mouvements les plus importants de l’histoire du design avec l’Open University ! | Graphisme &amp; interactivité blog par Geoffrey Dorne</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?TN06wA">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FTN06wA&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://graphism.fr/apprenez-les-6-mouvements-les-importants-de-lhistoire-du-design-avec-lopen-university</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=design">design</a></span> <span class="linktag" title="Add tag"><a href="?addtag=graphisme">graphisme</a></span> <span class="linktag" title="Add tag"><a href="?addtag=histoire">histoire</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-        <li>
-            <a name="NU9u-A" id="NU9u-A"></a>
-            <div class="thumbnail"></div>
-            <div class="linkcontainer">
-                
-                <span class="linktitle"><a href="http://blog.surf-prevention.com/2013/06/09/la-noyade-ne-ressemble-pas-a-une-noyade/">La Noyade ne ressemble pas à une Noyade | Surf Prévention</a></span>
-                <br>
-                
-                
-                    <span class="linkdate" title="Short link here"><a href="?NU9u-A">permalink</a> - </span>
-                
-                <div style="position:relative;display:inline;"><a href="http://invx.com/code/qrcode/?code=http%3A%2F%2Fliens.effingo.be%2F%3FNU9u-A&width=200&height=200" 
-                    onclick="return false;" class="qrcode"><img src="images/qrcode.png" width="13" height="13" title="QR-Code"></a></div> - 
-                <span class="linkurl" title="Short link">http://blog.surf-prevention.com/2013/06/09/la-noyade-ne-ressemble-pas-a-une-noyade/</span><br>
-                
-                    <div class="linktaglist">
-                    <span class="linktag" title="Add tag"><a href="?addtag=assistance">assistance</a></span> <span class="linktag" title="Add tag"><a href="?addtag=mer">mer</a></span> <span class="linktag" title="Add tag"><a href="?addtag=nage">nage</a></span> <span class="linktag" title="Add tag"><a href="?addtag=noyade">noyade</a></span> <span class="linktag" title="Add tag"><a href="?addtag=s%C3%A9curit%C3%A9">sécurité</a></span> 
-                    </div>
-                
-            </div>
-        </li>
-    
-    </ul>
+#pageheader #shaarli_title a {background:none;box-shadow:0;font-size: 25px;margin-top: 3px;}
+#shaarli_title { font-weight:bold; font-style:normal; margin-top:0;}
+#shaarli_title a { backround:none repeat scroll 0 0 transparent;color: #E3272D !important; border-radius: 0px;box-shadow:0; }
 
-    <div class="paging">
+#pageheader a:visited { color:#ffffff; text-decoration:none;}
+#pageheader a:hover { color:#ffffff; text-decoration:none;}
+#pageheader a:active { color:#bbb; text-decoration:none;}
+#searchcriteria { padding: 4px 0px 5px 5px; font-weight:bold;}
+.paging { padding:5px;background-color:#777; color:#EDEDED; text-align:center;  clear:both;}
+.paging a:link { color:#EDEDED; text-decoration:none;}
+.paging a:visited { color:#EDEDED;  }
+.paging a:hover {  color:#ffffff;  }
+.paging a:active { color:#ffffff;  }
+#paging_privatelinks { float:left; }
+#paging_linksperpage { float:right; padding-right:5px; }
+#paging_current { display:inline; color:#fff; padding:0 20 0 20; }
+#paging_older { margin-right:15px; }
+#paging_newer { margin-left:15px; }
 
-    <div id="paging_linksperpage">
-        Links per page: <a href="?linksperpage=20">20</a> <a href="?linksperpage=50">50</a> <a href="?linksperpage=100">100</a>
-        <form method="GET" style="display:inline;" class="linksperpage"><input type="text" name="linksperpage" size="2" style="height:15px;"></form>
-    </div>
-     <a href="?page=2" id="paging_older">&#x25C4;Older</a> 
-    <div id="paging_current">page 1 / 206 </div>
-    
-</div>
+#headerform { color:#4C4B4A; padding:5px 5px 5px 5px; clear: both;}
+#headerform a { color:#4C4B4A;}
+#toolsdiv { color:#ffffff; padding:5px 5px 5px 5px; clear:left; }
+#uploaddiv { color:#4C4B4A; padding:5px 5px 5px 5px; clear:left; }
+#private {margin-top:15px;}
+#editlinkform { height:100%;color:#4C4B4A; padding:5px 5px 5px 15px; width:80%; clear:left; }
+#linklist li {
+	padding:4px 10px 15px 20px; border-top: 1px solid #bbb; clear:both;
+    background-color: #F2F2F2;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#F2F2F2), to(#ffffff));
+	background: -webkit-linear-gradient(#F2F2F2, #ffffff);
+	background: -moz-linear-gradient(#F2F2F2, #ffffff);
+	background: -ms-linear-gradient(#F2F2F2, #ffffff);
+	background: -o-linear-gradient(#F2F2F2, #ffffff);
+	background: linear-gradient(#F2F2F2, #ffffff);
+}
 
-</div>
+/*
+#linklist li.publicLinkHightLight:hover,#linklist li:hover{
+	background: #E9FFCE;
+}
+*/
+#linklist li.private { background: url('../images/private.png') no-repeat 15px center; padding-left:60px; }
+#linklist li  {  padding-left:26px; }
+.private  .linktitle a {color:#969696;}
+.linktitle { font-size:14pt; font-weight:bold; }
+.linktitle a { text-decoration: none; color:#E3272D; }
+.linktitle a:hover { color:#4C4B4A; }
+.linkdate { font-size:8pt; color:#888; }
+.linkdate a { background-image:url('../images/calendar.png');padding:2px 0 3px 20px;background-repeat:no-repeat;text-decoration: none; color:#4C4B4A;  }
+.linkdate a:hover { color: #E3272D }
+.linkurl { font-size:8pt; color:#E3272D; }
+.linkdescription { color:#4C4B4A; margin-top:0; margin-bottom:12px; font-weight:normal; max-height:400px; overflow:auto; }
+.linkdescription a { text-decoration: none; color:#3465A4; }
+.linkdescription a:hover { color:#E3272D; }
+.linktaglist { padding-top:10px;}
+.linktag {
 
-    <div id="footer">
-    <b><a href="http://sebsauvage.net/wiki/doku.php?id=php:shaarli">Shaarli 0.0.41 beta</a></b> - The personal, minimalist, super-fast, no-database delicious clone. By <a href="http://sebsauvage.net" target="_blank">sebsauvage.net</a>.
-</div>
-<div id="piwik">
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://effingo.be/piwik/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "3"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Piwik Code -->
-</div>
+font-size:9pt;
+    background-color: #F2F2F2;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#F2F2F2), to(#ffffff));
+	background: -webkit-linear-gradient(#F2F2F2, #ffffff);
+	background: -moz-linear-gradient(#F2F2F2, #ffffff);
+	background: -ms-linear-gradient(#F2F2F2, #ffffff);
+	background: -o-linear-gradient(#F2F2F2, #ffffff);
+	background: linear-gradient(#F2F2F2, #ffffff);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+	padding:3px 3px 3px 20px;
+	height:20px;
+	border-radius: 3px 3px 3px 3px;
+	cursor:pointer;
+	background-image:url('../images/tag_blue.png');
+	background-repeat:no-repeat;
+	background-position:3px center;
+	background-color:#ffffff;
+}
+.linktag:hover { border-color: #555573; color:#000; }
+.linktag a { color:#777; text-decoration:none; }
+.linkshort { font-size:8pt; color:#888; }
+.linkshort a { text-decoration: none; color:#393964; }
+.linkshort a:hover { text-decoration: underline; }
+.buttoneditform { display:inline; }
+#footer { font-size:8pt; text-align:center; border-top:1px solid #ddd; color: #888; clear:both; }
+#footer  a{ color:#4C4B4A;}
+#footer  a:hover{ color:#4C4B4A;}
+#newversion { background-color: #FFFFA0; color:#000; position:absolute; top:0;right:0; padding:2 7 2 7;  font-size:9pt;}
+#cloudtag  { padding-left:10%; padding-right:10%; }
+#cloudtag a, #cloudtag a:visited { color:#E3272D !important; text-decoration:none; }
+#cloudtag a:hover { color:#4C4B4A !important; text-decoration:none;
+	transition-duration:1s;
+	-moz-transition-duration:1s;
+	-webkit-transition-duration:1s;
+	-o-transition-duration:1s; }
+#cloudtag span { color:#4C4B4A !important;}
+#installform td  { font-size: 10pt; color:black; padding:10px 5px 10px 5px; clear:left; }
+#changepasswordform { color:#4C4B4A; padding:10px 5px 10px 5px; clear:left; }
+#changetag { color:#4C4B4A; padding:10px 5px 10px 5px; clear:left; }
+#configform td  { color:#4C4B4A; font-size: 10pt; padding:10px 5px 10px 5px;  }
+#configform  { color:#4C4B4A; padding:10px 5px 10px 5px; clear:left; }
+.thumbnail { float:right;  margin-left: 10px; }
+/* If you want thumbnails on the left:
+.thumbnail { float:left;  margin-right: 10px;   }
+.linkcontainer { position: static; margin-left:130px; }
+*/
 
 
 
 
+/* --- Picture wall CSS --- */
+.picwall_container { color:#ffffff; background-color:#4C4B4A; clear:both; }
+.picwall_pictureframe { background-color:#4C4B4A; z-index:5; position:relative; display:table-cell; vertical-align:middle;width:90px; height:90px; overflow:hidden; text-align:center;  float:left; }
+.picwall_pictureframe img { max-width: 100%;height: auto; } /* Adapt the width of the image */
+.picwall_pictureframe a {text-decoration:none;color:#4C4B4A;} /*vraiment moche le bleu par défaut qui apparaissait au chargement. Aïe mes yeux*/
 
-    
-<script>
-$(document).ready(function() {
-	$('a.qrcode').click(function(){
-	  hide_qrcode();
-	  var link = $(this).attr('href');
-	  $(this).after('<div class="qrcode" onclick="hide_qrcode();return false;"><img src="'+link+'" width="200" height="200"><br>click to close</div>');
-	});
-});
-function hide_qrcode() { $('div.qrcode').remove(); }
-</script>
+/* CSS to show title when hovering an image - no javascript required. */
+.picwall_pictureframe span.info {display: none;}
+.picwall_pictureframe:hover span.info {
+    display:block;
+    position:absolute;
+    top:0; left:0; width:90px;
+    font-weight:bold;
+    font-size:8pt;
+    color:#fff;
+    text-align: left;
+  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.4);  /* FF3+, Saf3+, Opera 10.10+, Chrome, IE9 */
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000); /* IE6IE9 */
+text-shadow:2px 2px 1px #000000;    
+}
 
-</body>
-</html>
+/* Minimal customisation for jQuery widgets */
+.ui-autocomplete { background-color:#fff; padding-left:5px;}
+.ui-state-hover { background-color: #604dff; color:#fff; }
+
+#linklist li.publicLinkHightLight{
+	background: #ffffff;
+}
+
+div.qrcode {
+width:220px;
+height:220px;
+background-color: #ffffff;
+border: 1px solid #4C4B4A ;
+position: absolute;
+top:-100px;
+left:-100px;
+text-align:center;
+font-size: 8pt;
+z-index:50;
+-webkit-box-shadow:2px 2px 20px 2px #333333;
+-moz-box-shadow:2px 2px 20px 2px #333333;
+-o-box-shadow:2px 2px 20px 2px #333333;
+-ms-box-shadow:2px 2px 20px 2px #333333;
+box-shadow:2px 2px 20px 2px #333333;
+}
+
+
+div.daily {
+    border-bottom: 2px solid #4C4B4A;
+    font-family: sans-serif,Arial,verdana,helvetica;
+    position: relative;
+	background-color:rgba(196, 198, 199, 0.3);
+}
+
+#daily_col1 { float:left;position:relative; width:33%; padding-left:1%; }
+#daily_col2 { float:left;position:relative; width:33%; }
+#daily_col3 { float:left;position:relative; width:33%;}
+
+div.dailyAbout
+{ 
+    float:left;
+    border: 1px solid black;
+    font-size: 8pt;
+    position:absolute;
+    left:10px;
+    top: 15px;
+    padding: 5px 5px 5px 5px;
+    text-align:center; 
+	width: 160px;
+	margin-left:10px /*manquant*/
+}
+div.dailyAbout  a { color: #E3272D ; }
+div.dailyTitle
+ { 
+     color:#E3272D ;
+	 font-weight: normal;
+     font-size: 38pt; /*c'est mieux plus petit et avec un weight normal*/
+     text-align:center; 
+     padding:10px 20px 0px 20px;
+}
+div.dailyDate
+ { 
+     color:#4C4B4A;    
+	 font-size: 12pt;
+     font-weight:bold; 
+     text-align:center; 
+     padding:0px 20px 30px 20px;
+}
+div.daily div.dailyDate span {
+display:none} /*superflu*/
+
+/* Individual entries in "Daily": */
+div.dailyEntry
+{
+    margin: 5px 10px 2px 5px;
+    font-size: 10pt;
+    border-top: 1px solid #555;
+}
+div.dailyEntry  a { text-decoration:none; color: #E3272D ; }
+div.dailyEntry:hover{
+background-color:rgba(0, 0, 0, 0.04);
+}
+div.dailyEntryTags { font-size:7.75pt;  }
+div.dailyEntryTitle { font-size:16pt;}
+div.dailyTitle img.nomobile {display:none;}   /* Cache les images du titre*/
+div.daily div img {display:none;}   /* Cache l'image du bas*/
+div.dailyEntry div a img  {display:inline !important;} /*impossible de cacher ces trucs sans masquer les thumbnails grr*/
+div.dailyEntryThumbnail 
+{ 
+    width:100%; 
+    text-align:center; 
+    padding:4px 0px 2px 0px;
+}
+div.dailyEntryDescription
+{ 
+    margin-top: 10px;
+    margin-bottom: 30px; 
+    text-align:justify; 
+    overflow:auto;
+	color:#4C4B4A ;
+}
+
+/* Common css screwdriver */
+.clear{
+	clear:both;
+}
+
+/* For lazy images loading in picture wall.
+   using http://www.appelsiini.net/projects/lazyload 
+ */
+.lazyimage { display:none; }
+
+@media print {
+html {border:none;background:#fff!important;color:#000!important;}
+body {font-size:12pt;width:auto!important;margin:auto!important;}
+p {orphans:3; /*pas de ligne seule en bas */widows:3;/*pas de ligne seule en haut*/}
+a {color:#000!important;text-decoration:none!important;}
+#pageheader, .paging, #linklist li form, #footer {display:none;}
+#linklist li { padding:2 0 10 0; border-top: 2px solid #000; clear:both; }
+#linklist li.private { background-color: none; border-left:0; }
+.linkdate { line-height:2; }
+.linkurl { color:#000; }
+.linkdescription { font-size:10pt;}
+.linktag { border: 1px solid black; font-style:italic;  font-size:8pt;}
+
+}
+
+
+@media handheld, only screen and (max-width: 480px), only screen and (max-device-width: 854px)
+{
+/* A few fixes for mobile devices (far from perfect). */
+.nomobile  { display:none; }
+#logo { display:none; }
+#pageheader a
+{
+	padding:5px;
+	border-radius: 5px 5px 5px 5px;
+	margin:3px;
+}
+.searchform,.tagfilter  { display:block !important; margin:0px !important; padding:0px !important; width:100% !important; }
+.searchform input,.tagfilter input  { margin:0px !important; padding:0px !important; display:inline !important; }
+.tagfilter input.bigbutton,.searchform input.bigbutton,.addform input.bigbutton{  width:30%; font-size:smaller;}
+#searchform_value { width:70% !important; }
+#tagfilter_value { width:70% !important; }
+div.qrcode { position:relative; float:left; top:-10px; left:0px; }
+#paging_privatelinks { float;none; }
+#paging_linksperpage { float:none; margin-bottom:10px; font-size:smaller;}
+#paging_older,#paging_newer,#paging_linksperpage a { border: 1px solid black; padding:3px 5px 3px 5px; background-color:#666; color:#fff; border-radius: 5px 5px 5px 5px;}
+.thumbnail { float:none; height:auto; margin: 0px; text-align:center;}
+#cloudtag  { padding:0px; }
+div.dailyAbout {  float:none; position:relative; width:100%; clear:both; padding:0px; top:0px; left:0px; }
+#daily_col1,#daily_col2,#daily_col3 { float:none; width:100%; padding:0px;}
+div.dailyTitle  { font-size: 18pt; margin-top:5px; padding:0px;}
+div.dailyDate  {  font-size: 11pt;padding:0px; display:block; }
+div.dailyEntryTitle { font-size:16pt; font-weight:bold;}
+div.dailyEntryDescription { font-size:10pt; }
+
+} 
+
