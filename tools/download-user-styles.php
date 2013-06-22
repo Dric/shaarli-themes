@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Source: https://github.com/Riduidel
  * url of the opml file of the planet shaarli
  */
 define("SHAARLI_RSS_OPML", "https://www.ecirtam.net/shaarlirss/custom/people.opml");
