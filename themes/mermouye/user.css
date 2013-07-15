@@ -1,0 +1,109 @@
+/* User CSS Stylsheet for Shaarli - http://sebsauvage.net/wiki/doku.php?id=php:shaarli 
+Par mermouy at gmail.com
+*/
+
+#pageheader a { color: #eee; }
+#pageheader
+{
+   background-color: #111;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#111), to(#aaa));
+background: -webkit-linear-gradient(#111, #aaa);
+background: -moz-linear-gradient(#111, #aaa);
+background: -ms-linear-gradient(#111, #aaa);
+background: -o-linear-gradient(#111, #aaa);
+background: linear-gradient(#111, #aaa);
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+width:auto;
+padding:0 10px 5px 10px;
+margin: auto;
+}
+
+#pageheader a
+{
+font-weight:bold;
+background-color: #333;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#333), to(#666));
+background: -webkit-linear-gradient(#333, #666);
+background: -moz-linear-gradient(#333, #666);
+background: -ms-linear-gradient(#333, #666);
+background: -o-linear-gradient(#333, #666);
+background: linear-gradient(#333, #666);
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+padding:5px;
+border-radius: 5px 5px 5px 5px;
+margin:10px 3px 3px 3px;
+float:left;
+}
+span#shaarli_title {color: orange;}
+#shaarli_title a {color: orange !important; text-decoration: underline; font-size:14px; padding:5px 20px 5px 20px; }
+#shaarli_title a:hover { color: orange !important; }
+#pageheader a:hover { color: orange; text-decoration:none;}
+
+.linktitle { font-size:12pt; font-weight:bold; }
+.linktitle a { text-decoration: none; color: #fff; }
+
+/*Liens privés*/
+.private .linkdate { float:right;}
+.private .qrcode{ float: right;}
+.private .linktitle a { color:#DB8E08; float: right; }
+.private .linkurl { float: right; }
+
+
+.linkcontainer { padding-left: 30px;} 
+#linklist li.private { background: black url('../images/private.png') no-repeat 10px center; padding-left:0px; }
+.linkdate a { padding:20;}
+
+#linklist li {
+ /*le padding bottom ici est pour corriger un petit souci avec le dégradé quand l'image est un peu grande*/
+padding:10px 20px 65px 20px; border-top: 1px solid orange; clear:both;
+   background-color: #111 !important;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#111), to(#aaa)) !important;
+background: -webkit-linear-gradient(#111, #aaa) !important;
+background: -moz-linear-gradient(#111, #aaa) !important;
+background: -ms-linear-gradient(#111, #aaa) !important;
+background: -o-linear-gradient(#111, #aaa) !important;
+background: linear-gradient(#111, #aaa) !important;
+}
+.linkurl { font-size:8pt; color:#bbb; }
+.linkdescription { color:#eee; padding: 15px; }
+.private .linktaglist { padding-top:10px; text-align:right; margin-bottom: 5px; }
+.linktaglist { text-align:center; }
+.private .linktaglist { text-align:center; }
+.linktag { font-size:11px; background: #aaa;  }
+.linktag a { color:#ddd; margin-right:15px; text-transform: capitalize; }
+
+#newversion { font-size: 10pt; }
+#footer { background: black; }
+
+div.daily { border: none; }
+div.dailyAbout
+{
+   float:right;
+   border: none;
+   font-size: 8pt;
+   position:absolute;
+   right:10px;
+   top: 15px;
+   margin: 15px ;
+   text-align:right;
+}
+div.dailyTitle
+{
+    font-weight: normal;
+    font-size: 26pt;
+    text-align:center;
+    padding:10px 20px 20px 20px;
+}
+div.dailyDate
+{ font-size: 14pt; padding:0px 20px 30px 20px; }
+div.dailyEntry
+{
+   margin: 5px 10px 2px 5px;
+   font-size: 12pt; color: #444;
+   border-top: 1px solid #555;
+}
+div.dailyEntry  a { text-decoration:none; color: #000; }
+div.dailyEntryTags { font-size:10pt; text-transform: capitalize; margin-bottom: 5px; border-bottom: 1px dotted black; margin: 5px 25px 0px 0px; padding: 0px 0px 5px 5px; }
+div.dailyEntryTitle { font-size:16pt; text-align:center}
+
+#footer { display: none; }

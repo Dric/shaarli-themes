@@ -1,4 +1,4 @@
-/* CSS Stylsheet for Shaarli - http://sebsauvage.net/wiki/doku.php?id=php:shaarli */
+﻿/* CSS Stylsheet for Shaarli - http://sebsauvage.net/wiki/doku.php?id=php:shaarli */
 
 /* Thème adapté par Alexis J pour http://liens.effingo.be */
 
@@ -74,8 +74,9 @@ h1 { font-size:20pt; font-weight:bold; font-style:italic; margin-bottom:20px; }
 	color:#ffffff;
 	float:left;
 	text-decoration:none;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3) inset;
 }
-#pageheader a:hover{background-color: #595959;}
+#pageheader a:hover{background-color: #5c9c3f;}
 
 #toolsdiv a{
 	clear:both;
@@ -140,27 +141,27 @@ h1 { font-size:20pt; font-weight:bold; font-style:italic; margin-bottom:20px; }
 #editlinkform { height:100%;color:#8cabf0; padding:5px 5px 5px 15px; width:80%; clear:left; }
 #linklist li {
 	padding:4px 10px 15px 20px; border-top: 1px solid #bbb; clear:both;
-    background-color: #F2F2F2;
+    background-color: #ddd;
 }
 
-/*
+
 #linklist li.publicLinkHightLight:hover,#linklist li:hover{
-	background: #E9FFCE;
+	background: #fff;
 }
-*/
+
 #linklist li.private { background: url('../images/private.png') no-repeat 15px center; padding-left:60px; }
 #linklist li  {  padding-left:26px; }
 .private  .linktitle a {color:#969696;}
 .linktitle { font-size:14pt; font-weight:bold; }
 .linktitle a { text-decoration: none; color:#507cb7; }
-.linktitle a:hover { color:#8cabf0; }
+.linktitle a:hover { color:#5c9c3f; }
 .linkdate { font-size:8pt; color:#888; }
 .linkdate a { background-image:url('../images/calendar.png');padding:2px 0 3px 20px;background-repeat:no-repeat;text-decoration: none; color:#8cabf0;  }
 .linkdate a:hover { color: #507cb7 }
 .linkurl { font-size:8pt; color:#507cb7; }
 .linkdescription { color:#000; margin-top:0; margin-bottom:12px; font-weight:normal; max-height:400px; overflow:auto; }
 .linkdescription a { text-decoration: none; color:#3465A4; }
-.linkdescription a:hover { color:#507cb7; }
+.linkdescription a:hover { color:#5c9c3f; }
 .linktaglist { padding-top:10px;}
 .linktag {
 
@@ -228,7 +229,7 @@ text-shadow:2px 2px 1px #000000;
 .ui-state-hover { background-color: #604dff; color:#fff; }
 
 #linklist li.publicLinkHightLight{
-	background: #ffffff;
+	background: #eee;
 }
 
 div.qrcode {
