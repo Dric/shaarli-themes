@@ -5,3 +5,7 @@ Add your themes under the `themes/yourthemename` directory (with some screenshot
 Eventually it could be submitted for upstream integration.
 
 Happy hacking!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/nodiscc/shaarli-themes/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
